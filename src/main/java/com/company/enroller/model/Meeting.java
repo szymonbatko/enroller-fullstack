@@ -24,8 +24,7 @@ public class Meeting {
     @Column
     private String date;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "meetings")
+     @ManyToMany(mappedBy = "meetings")
     Set<Participant> participants = new HashSet<>();
 
     public long getId() {

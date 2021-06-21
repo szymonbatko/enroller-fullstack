@@ -26,12 +26,12 @@
         props: ['username'],
         data() {
             return {
-                meetings: []
+                meetings: this.$http.get("meetings").then(response => {this.meetings=response.body})
             };
         },
         methods: {
             addNewMeeting(meeting) {
-                this.meetings.push(meeting);
+              this.$http.post("meetings", meeting).then(()=>{ this.meetings = this.$http.get("meetings").then(response => {this.meetings=response.body;})});
             },
             addMeetingParticipant(meeting) {
                 meeting.participants.push(this.username);
